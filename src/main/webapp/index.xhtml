@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>Facelet Title</title>
+        <h:outputStylesheet name="css/jsfcrud.css"/>
+        <h:outputStylesheet name="css/bootstrap.css"/>
+    </h:head>
+    <h:body>
+        <div class="container-fluid">
+        <b>Menu Principal</b>
+        <br></br>
+        <p:calendar></p:calendar>
+        </div>
+        <br></br>
+        <h:form>
+        <p:panel id="pnl" header="Bienvenido">
+            
+            <p:commandButton id="Hola" value="Probar" />
+        </p:panel>
+            <p:blockUI block="pnl" trigger="Hola" />
+        <br></br>
+        
+            <h:link class="btn btn-primary" outcome="/alumno/List" value="Mostrar Todos los alumnos"/>&nbsp; &nbsp;
+            <h:commandButton class="btn btn-dark" value="Ir a Crear Alumno" action="case1"></h:commandButton>
+        </h:form>
+    </h:body>
+
+</html>
+
