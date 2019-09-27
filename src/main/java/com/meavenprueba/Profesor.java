@@ -9,7 +9,6 @@ package com.meavenprueba;
  *
  * @author User
  */
-
 public class Profesor {
     private Integer profesor_id;
     private String username;
