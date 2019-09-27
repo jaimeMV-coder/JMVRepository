@@ -24,7 +24,7 @@ import javax.sql.DataSource;
  */
 public abstract class DAOFactory<T> {
 
-    private static final String DATASOURCE_CONTEXT = "java:jboss/postgresDS";
+    private static final String DATASOURCE_CONTEXT = "java:/PostgresDS";
     private final String SQL_ALL;
     private final String SQL_INSERT;
     private final String SQL_UPDATE;
