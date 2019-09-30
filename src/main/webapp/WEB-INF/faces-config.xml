@@ -15,5 +15,9 @@
             <from-outcome>case1</from-outcome>
             <to-view-id>/alumno/Create.xhtml</to-view-id>
         </navigation-case>
+        <navigation-case>
+            <from-outcome>case2</from-outcome>
+            <to-view-id>/profesor/Create.xhtml</to-view-id>
+        </navigation-case>
     </navigation-rule>
 </faces-config>

@@ -11,16 +11,22 @@ package com.meavenprueba;
  */
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.bean.ManagedBean;  
+import javax.faces.bean.RequestScoped;  
+import javax.faces.model.DataModel;      
+@ManagedBean(name="profesor_C")
+@RequestScoped
 public class ProfesorController {
     ProfesorDAO daou;
-    
-    public void registrar(Profesor profe){
-        daou.insert(profe);
+    Profesor profe;
+   
+    public void registrar(){
+        this.daou.insert(this.profe);
     }
-    public void actualizar(Profesor profe){
-        daou.update(profe);
+    public void actualizar(){
+        this.daou.update(this.profe);
     }
     public void mostrar_Todos(){
-      daou.getTodos();
+      this.daou.getTodos();
     }
 }
