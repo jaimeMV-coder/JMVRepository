@@ -55,13 +55,21 @@ public class ProfesorDAO extends DAOFactory<Profesor> {
 
     
     @Override
-    Map<String, Object> convertObjToParam(Profesor object) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    Map<String, Object> convertObjToParam(Profesor profes) {
+        Map<String, Object> params = new HashMap<>();
+        params.put("PROFESOR_ID", profes.getProfesor_id());
+        params.put("USERNAME", profes.getUsername());
+        params.put("ALUMNO_ID", profes.getAlumno_id());
+        return params;
     }
 
     @Override
     Profesor convertDbToOjb(ResultSet resultSet) throws SQLException {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        Profesor profes = new Profesor();
+        profes.setProfesor_id(resultSet.getInt("PROFESOR_ID"));
+        profes.setUsername(resultSet.getString("USERNAME"));
+        profes.setAlumno_id(resultSet.getInt("ALUMNO_ID"));
+
+        return profes;
     }
-    
 }

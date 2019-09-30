@@ -23,18 +23,18 @@ and open the template in the editor.
                 <h:panelGrid columns="">
                     
                     <h:outputLabel value="ID" for="profesor_id" />
-                    <h:inputText class="form-control" id="profesor_id"  required="true" requiredMessage="Se requiere que ingreses todos los datos"/>
+                    <h:inputText class="form-control" id="profesor_id" binding="#{profesor_C.id_p}"   requiredMessage="Se requiere que ingreses todos los datos"/>
                     <br/>
                     <br/>
                     <h:outputLabel value="Nombre de usuario" for="profesor_id" />
-                    <h:inputText class="form-control" id="username"   required="true" requiredMessage="Se requiere que ingreses todos los datos"/>
+                    <h:inputText class="form-control" id="username" binding="#{profesor_C.usern}"  required="true" requiredMessage="Se requiere que ingreses todos los datos"/>
                     <br/>
                     <br/>
                     <h:outputLabel value="Alumno_ID" for="alumno_id" />
-                    <h:inputText class="form-control" id="alumno_id"   required="true" requiredMessage="Se requiere que ingreses todos los datos"/>
+                    <h:inputText class="form-control" id="alumno_id" binding="#{profesor_C.alum_id}"   requiredMessage="Se requiere que ingreses todos los datos"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink class="btn btn-primary" action="#{profesorController.registrar}" value="Guardar" />
+                <h:commandLink class="btn btn-primary" action="#{profesor_C.registrar}" value="Guardar" />
                                 
                 <h:link class="btn btn-secondary" outcome="/index" value="Index"/>
             </h:form>

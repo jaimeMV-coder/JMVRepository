@@ -9,6 +9,8 @@ package com.meavenprueba;
  *
  * @author User
  */
+//import java.util.Objects;
+
 public class Profesor {
     private Integer profesor_id;
     private String username;
