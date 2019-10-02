@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.meavenprueba;
 
 import java.sql.CallableStatement;
@@ -162,7 +157,7 @@ public abstract class DAOFactory<T> {
 
         try {
             connection = getConnection();
-            connection.setAutoCommit(true);
+            //connection.setAutoCommit(true);
             statement = connection.prepareCall(sql);
             setParams(statement, params, sql);
             return statement.executeUpdate();

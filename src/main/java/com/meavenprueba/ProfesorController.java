@@ -9,27 +9,35 @@ package com.meavenprueba;
  *
  * @author User
  */
-import java.util.ArrayList;
-import java.util.List;
+import com.meavenprueba.util.JsfUtil;
 import javax.faces.bean.ManagedBean;  
-import javax.faces.bean.RequestScoped;  
-import javax.faces.model.DataModel;  
+import javax.faces.bean.ViewScoped;  
+import javax.faces.model.DataModel;
+import javax.ejb.EJB;
 import javax.faces.component.UIComponent;
 @ManagedBean(name="profesor_C")
-@RequestScoped
+@ViewScoped
 public class ProfesorController {
-    ProfesorDAO daou;
-    Profesor profe;
+    
     String id_p;
-    String usern;
     String alum_id;
-
+    String usern;
+    private Profesor current;
+    
     public String getId_p() {
         return id_p;
     }
 
     public void setId_p(String id_p) {
         this.id_p = id_p;
+    }
+
+    public String getAlum_id() {
+        return alum_id;
+    }
+
+    public void setAlum_id(String alum_id) {
+        this.alum_id = alum_id;
     }
 
     public String getUsern() {
@@ -40,26 +48,22 @@ public class ProfesorController {
         this.usern = usern;
     }
 
-    public String getAlum_id() {
-        return alum_id;
-    }
-
-    public void setAlum_id(String alum_id) {
-        this.alum_id = alum_id;
-    }
     
-    public void registrar(){
-        this.profe= new Profesor();
-        this.daou= new ProfesorDAO();
-        this.profe.setProfesor_id(1);
-        this.profe.setUsername(getUsern());
-        this.profe.setAlumno_id(1);
-        this.daou.insert(this.profe);
+    @EJB
+    private profesorEJB ejb;
+    
+    
+
+    public String registrar() {
+        current = new Profesor();
+        this.current.setProfesor_id(Integer.parseInt(this.id_p));
+        this.current.setAlumno_id(Integer.parseInt(this.alum_id));
+        this.current.setUsername(this.usern);
+        String mensaje;
+        mensaje=ejb.guardar(current);
+        return "Creado";
     }
-    public void actualizar(){
-        this.daou.update(this.profe);
-    }
-    public void mostrar_Todos(){
-      this.daou.getTodos();
-    }
+   
+   
 }
+
