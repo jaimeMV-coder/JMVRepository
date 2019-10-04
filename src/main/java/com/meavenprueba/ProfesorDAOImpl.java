@@ -10,6 +10,9 @@ import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.naming.NamingException;
 
 /**
  *
@@ -18,12 +21,12 @@ import java.util.Map;
 public class ProfesorDAOImpl extends DAOFactory<Profesor> implements ProfesorDAO{
       private static final String SQL_INSERT
             = " INSERT INTO PROFESORES ( profesor_id,username,alumno_id ) "
-            + " VALUES ( :PROFESOR_ID,:USERNAME,:ALUMNO_ID )";
+            + " VALUES (?,?,?)";
     private static final String SQL_UPDATE
             = " UPDATE PROFESORES SET "
-            + "    USERNAME = :USERNAME, "
-            + "    ALUMNO_ID    = :ALUMNO_ID "
-            + " WHERE PROFESOR_ID       = :PROFESOR_ID ";
+            + "    USERNAME = ?, "
+            + "    ALUMNO_ID    = ? "
+            + " WHERE PROFESOR_ID       = ? ";
     private static final String SQL_DELETE
             = "";
     private static final String SQL_ALL
@@ -31,7 +34,7 @@ public class ProfesorDAOImpl extends DAOFactory<Profesor> implements ProfesorDAO
     private static final String SQL_FIND
             = " SELECT PROFESOR_ID,USERNAME,ALUMNO_ID "
             + " FROM PROFESORES "
-            + " WHERE PROFESOR_ID = :PROFESOR_ID";
+            + " WHERE PROFESOR_ID = ?";
     
     public ProfesorDAOImpl() {
         super(SQL_ALL, SQL_INSERT, SQL_UPDATE, SQL_DELETE);
@@ -58,16 +61,24 @@ public class ProfesorDAOImpl extends DAOFactory<Profesor> implements ProfesorDAO
 
     @Override
     public int insert(Profesor profesor) {
-        return super.insert(profesor);
+        String username=profesor.getUsername();
+        Integer id_p=profesor.getProfesor_id();
+        Integer alumno_id= profesor.getAlumno_id();
+        
+          try {
+              return super.executeUpdate(SQL_INSERT,id_p,username,alumno_id);
+          } catch (NamingException | SQLException ex) {
+              throw new DAOException(ex);
+          }
     }
 
     
     @Override
     Map<String, Object> convertObjToParam(Profesor profes) {
         Map<String, Object> params = new HashMap<>();
-        params.put("PROFESOR_ID", profes.getProfesor_id());
-        params.put("USERNAME", profes.getUsername());
-        params.put("ALUMNO_ID", profes.getAlumno_id());
+        params.put("1", profes.getProfesor_id());
+        params.put("2", profes.getUsername());
+        params.put("3", profes.getAlumno_id());
         return params;
     }
 

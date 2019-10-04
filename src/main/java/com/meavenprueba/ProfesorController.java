@@ -10,6 +10,8 @@ package com.meavenprueba;
  * @author User
  */
 import com.meavenprueba.util.JsfUtil;
+import java.util.ArrayList;
+import java.util.List;
 import javax.faces.bean.ManagedBean;  
 import javax.faces.bean.ViewScoped;  
 import javax.faces.model.DataModel;
@@ -17,12 +19,23 @@ import javax.ejb.EJB;
 import javax.faces.component.UIComponent;
 @ManagedBean(name="profesor_C")
 @ViewScoped
-public class ProfesorController {
+public final class ProfesorController {
     
     String id_p;
     String alum_id;
     String usern;
     private Profesor current;
+    private List<Profesor>lista;
+
+    public List<Profesor> getLista() {
+        return lista;
+    }
+
+    public void setLista(List<Profesor> lista) {
+        this.lista = lista;
+    }
+
+    
     
     public String getId_p() {
         return id_p;
@@ -52,8 +65,11 @@ public class ProfesorController {
     @EJB
     private profesorEJB ejb;
     
-    
-
+   
+    public void obtall(){
+       this.lista= new ArrayList<>();
+       this.lista=ejb.obtall();
+    } 
     public String registrar() {
         current = new Profesor();
         this.current.setProfesor_id(Integer.parseInt(this.id_p));
@@ -61,7 +77,7 @@ public class ProfesorController {
         this.current.setUsername(this.usern);
         String mensaje;
         mensaje=ejb.guardar(current);
-        return "Creado";
+        return mensaje;
     }
    
    

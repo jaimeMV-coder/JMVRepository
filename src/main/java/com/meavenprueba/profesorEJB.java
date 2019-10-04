@@ -9,6 +9,7 @@ package com.meavenprueba;
  *
  * @author User
  */
+import java.util.List;
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
 
@@ -24,5 +25,11 @@ public class profesorEJB  {
         }
         
         return mensaje;
+    }
+    public List<Profesor> obtall(){
+       List<Profesor>profesores;
+        profesores=new ProfesorDAOImpl().getTodos();
+         
+        return profesores;
     }
 }

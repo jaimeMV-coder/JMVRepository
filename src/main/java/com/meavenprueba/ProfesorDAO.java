@@ -13,7 +13,7 @@ import java.util.List;
  */
 
 public interface ProfesorDAO  {
-    int insert(Profesor profesor);
+    int insert(Profesor profesor)throws DAOException;
     int update(Profesor profesor);
     Profesor getProfesor(String id);
     List<Profesor> getTodos() throws DAOException;

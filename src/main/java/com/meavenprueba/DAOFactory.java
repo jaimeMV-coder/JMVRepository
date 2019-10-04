@@ -12,6 +12,7 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
+
 /**
  * 
  * @author UDS
@@ -190,7 +191,7 @@ public abstract class DAOFactory<T> {
 
         try {
             connection = getConnection();
-            connection.setAutoCommit(true);
+            //connection.setAutoCommit(true);
             statement = connection.prepareCall(sql);
             //setParams(statement, params, sql);
             setValues(statement, params);
@@ -352,9 +353,9 @@ public abstract class DAOFactory<T> {
             }
         }
 
-        for (String string : nameParams) {
-            Object object = values.get(string);
-            statement.setObject(string, object);
+        for (String label : nameParams) {
+            Object object = values.get(label);
+            statement.setObject(label, object);
         }
     }
 

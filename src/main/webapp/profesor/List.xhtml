@@ -5,12 +5,41 @@ To change this template file, choose Tools | Templates
 and open the template in the editor.
 -->
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml">
-    <head>
-        <title>TODO supply a title</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-    </head>
-    <body>
-        <div>TODO write content</div>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+        
+    <!-- Prueba de Commit en Git   -->
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="Lista de profesores"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <body>
+        <p:calendar></p:calendar>
+        <h:form>
+            <p:dataTable var="profesor" value="#{profesor_C.lista}" >
+                <p:column headerText="Profesor_ID">
+                    <h:outputText value="#{profesor.profesor_id}" />
+                </p:column>
+
+                <p:column headerText="Username">
+                    <h:outputText value="#{profesor.username}" />
+                </p:column>
+
+                <p:column headerText="Alumno_ID">
+                    <h:outputText value="#{profesor.alumno_id}" />
+                </p:column>
+
+            </p:dataTable>
+        
+            <h:commandLink class="btn btn-primary" action="#{profesor_C.obtall()}" value="Traer datos" />
+        </h:form>
+        
     </body>
+        </ui:define>
+    </ui:composition>
+
 </html>
