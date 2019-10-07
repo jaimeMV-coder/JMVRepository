@@ -24,4 +24,11 @@
             <to-view-id>/profesor/List.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    <navigation-rule>
+        <from-view-id>/profesor/List.xhtml</from-view-id>
+        <navigation-case>
+            <from-outcome>case1</from-outcome>
+            <to-view-id>/profesor/Edit.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 </faces-config>

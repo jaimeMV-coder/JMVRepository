@@ -32,4 +32,11 @@ public class profesorEJB  {
          
         return profesores;
     }
+    public String destruir(Profesor profe){
+        String mensaje = "Fallo";
+        if(new ProfesorDAOImpl().delete(profe)!=0){
+        mensaje="Profesor eliminado";
+        }
+        return mensaje;
+    }
 }

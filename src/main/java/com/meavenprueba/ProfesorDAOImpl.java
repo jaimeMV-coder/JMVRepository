@@ -28,7 +28,7 @@ public class ProfesorDAOImpl extends DAOFactory<Profesor> implements ProfesorDAO
             + "    ALUMNO_ID    = ? "
             + " WHERE PROFESOR_ID       = ? ";
     private static final String SQL_DELETE
-            = "";
+            = "DELETE FROM PROFESORES WHERE PROFESOR_ID = ?";
     private static final String SQL_ALL
             = " SELECT PROFESOR_ID,USERNAME,ALUMNO_ID  FROM PROFESORES ";
     private static final String SQL_FIND
@@ -42,6 +42,15 @@ public class ProfesorDAOImpl extends DAOFactory<Profesor> implements ProfesorDAO
       @Override
     public List<Profesor> getTodos() {
         return findAll();
+    }
+      @Override
+    public int delete(Profesor profe){
+          try {
+              return super.executeUpdate(SQL_DELETE,profe.getProfesor_id());
+          } catch (NamingException | SQLException ex) {
+              throw new DAOException(ex);
+          }
+        
     }
 
     /**
