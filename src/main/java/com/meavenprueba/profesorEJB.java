@@ -21,7 +21,7 @@ public class profesorEJB  {
         String mensaje = "Fallo";
         if(new ProfesorDAOImpl().insert(profesor)!=0){
             
-            mensaje="Creado";
+            mensaje="Profesor"+profesor.getUsername();
         }
         
         return mensaje;
@@ -35,14 +35,14 @@ public class profesorEJB  {
     public String destruir(Profesor profe){
         String mensaje = "Fallo";
         if(new ProfesorDAOImpl().delete(profe)!=0){
-        mensaje="Profesor eliminado";
+        mensaje="Profesor "+profe.getUsername();
         }
         return mensaje;
     }
     public String actualizar (Profesor profe){
         String mensaje="Fallo";
         if(new ProfesorDAOImpl().update(profe) !=0){
-            mensaje="Profesor actualizado";
+            mensaje="Profesor "+profe.getUsername();
             
         }
         return mensaje;

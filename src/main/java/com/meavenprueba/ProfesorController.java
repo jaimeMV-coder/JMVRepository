@@ -116,7 +116,10 @@ public final class ProfesorController {
     }
 
     public void destruir(){
-        ejb.destruir(profeselected);
+        String mensaje;
+        mensaje=ejb.destruir(profeselected);
+        FacesMessage msg = new FacesMessage("Profesor Eliminado",mensaje);
+        FacesContext.getCurrentInstance().addMessage(null, msg);
         carga();
     }
     @EJB
@@ -131,13 +134,16 @@ public final class ProfesorController {
         this.current.setUsername(this.usern);
         String mensaje;
         mensaje=ejb.guardar(current);
+        FacesMessage msg = new FacesMessage("Profesor Creado",mensaje);
+        FacesContext.getCurrentInstance().addMessage(null, msg);
         return mensaje;
     }
-    public String update(){
+    public void update(){
         String mensaje;
         mensaje=ejb.actualizar(this.profeselected);
+        FacesMessage msg = new FacesMessage("Profesor Actualizado",mensaje);
+        FacesContext.getCurrentInstance().addMessage(null, msg);
         carga();
-        return mensaje;
     }
    public void enableEditBtn(){
        button.setDisabled(false);
