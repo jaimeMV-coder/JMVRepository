@@ -65,7 +65,15 @@ public class ProfesorDAOImpl extends DAOFactory<Profesor> implements ProfesorDAO
 
     @Override
     public int update(Profesor profesor) {
-        return super.update(profesor);
+         String username=profesor.getUsername();
+        Integer id_p=profesor.getProfesor_id();
+        Integer alumno_id= profesor.getAlumno_id();
+        
+          try {
+              return super.executeUpdate(SQL_UPDATE,username,alumno_id,id_p);
+          } catch (NamingException | SQLException ex) {
+              throw new DAOException(ex);
+          }
     }
 
     @Override

@@ -39,4 +39,12 @@ public class profesorEJB  {
         }
         return mensaje;
     }
+    public String actualizar (Profesor profe){
+        String mensaje="Fallo";
+        if(new ProfesorDAOImpl().update(profe) !=0){
+            mensaje="Profesor actualizado";
+            
+        }
+        return mensaje;
+    }
 }

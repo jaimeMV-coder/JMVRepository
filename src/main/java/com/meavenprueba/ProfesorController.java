@@ -45,6 +45,11 @@ public final class ProfesorController {
     }
     
     public Profesor getProfeselected() {
+         if(profeselected == null){
+         
+               profeselected = new Profesor();
+        }
+        
         return profeselected;
     }
 
@@ -91,10 +96,13 @@ public final class ProfesorController {
     public void carga(){
         this.lista= new ArrayList<>();
        this.lista=ejb.obtall();
+       this.profeselected = new Profesor();
     }
     public void onRowSelect(SelectEvent event) {
-        this.profeselected=new Profesor();
-        this.profeselected=(Profesor) event.getObject();
+        
+        this.profeselected.setProfesor_id(((Profesor) event.getObject()).getProfesor_id());
+        this.profeselected.setAlumno_id(((Profesor) event.getObject()).getAlumno_id());
+        this.profeselected.setUsername(((Profesor) event.getObject()).getUsername());
         FacesMessage msg = new FacesMessage("Profesor seleccionado", ((Profesor) event.getObject()).getUsername());
         FacesContext.getCurrentInstance().addMessage(null, msg);
     }
@@ -125,12 +133,16 @@ public final class ProfesorController {
         mensaje=ejb.guardar(current);
         return mensaje;
     }
-    public void update(){
-        
+    public String update(){
+        String mensaje;
+        mensaje=ejb.actualizar(this.profeselected);
+        carga();
+        return mensaje;
     }
    public void enableEditBtn(){
        button.setDisabled(false);
    }
+   
    
 }
 
